@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Briefing de Obra — Jherlly M. Domingues Engenharia</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=Fraunces:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:        #f0ede8;
+  --bg2:       #e8e3db;
+  --surface:   #ffffff;
+  --surface2:  #faf8f5;
+  --border:    #d8d0c4;
+  --border2:   #c8bfb2;
+  --text:      #1e1a16;
+  --text2:     #5c5448;
+  --text3:     #9c9088;
+  --accent:    #2b6cb0;
+  --accent2:   #3b82c4;
+  --accent-bg: #ebf4ff;
+  --accent-br: #bfdbfe;
+  --orange:    #c2621a;
+  --orange-bg: #fff4ed;
+  --orange-br: #fed7aa;
+  --green:     #1a7a4a;
+  --green-bg:  #ecfdf5;
+  --green-br:  #a7f3d0;
+  --red:       #c0392b;
+  --gold:      #b07d2a;
+  --gold-bg:   #fdf6e3;
+  --radius:    14px;
+  --shadow:    0 1px 3px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.06);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.1), 0 12px 40px rgba(0,0,0,0.08);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Sora', sans-serif; background: var(--bg); min-height: 100vh; color: var(--text); }
+
+/* HERO */
+.hero {
+  background: linear-gradient(135deg, #1a3a5c 0%, #2b6cb0 60%, #1e4d8c 100%);
+  padding: 48px 24px 52px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E");
+  pointer-events: none;
+}
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 100px;
+  padding: 6px 16px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: rgba(255,255,255,0.85);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+.hero h1 { font-family:'Fraunces',serif; font-size:clamp(2rem,6vw,3rem); font-weight:700; color:#fff; line-height:1.1; margin-bottom:12px; }
+.hero h1 span { color:#93c5fd; }
+.hero p { color:rgba(255,255,255,0.65); font-size:0.95rem; font-weight:300; max-width:460px; margin:0 auto; line-height:1.7; }
+
+/* PROGRESS */
+.progress-wrap {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 14px 24px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+.progress-inner { max-width:760px; margin:0 auto; display:flex; align-items:center; gap:14px; }
+.progress-bar { flex:1; height:6px; background:var(--bg2); border-radius:100px; overflow:hidden; }
+.progress-fill { height:100%; background:linear-gradient(90deg,var(--accent),var(--accent2)); border-radius:100px; width:0%; transition:width 0.4s ease; }
+.progress-pct { font-size:0.8rem; font-weight:700; color:var(--accent); min-width:42px; text-align:right; }
+
+/* LAYOUT */
+.page { max-width:760px; margin:0 auto; padding:32px 20px 80px; }
+
+/* CARD */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 32px;
+  margin-bottom: 20px;
+  box-shadow: var(--shadow);
+  transition: box-shadow 0.2s, border-color 0.2s;
+  animation: fadeUp 0.5s ease both;
+}
+.card:hover { box-shadow:var(--shadow-md); border-color:var(--border2); }
+.card:nth-child(1){animation-delay:.05s} .card:nth-child(2){animation-delay:.1s}
+.card:nth-child(3){animation-delay:.15s} .card:nth-child(4){animation-delay:.2s}
+.card:nth-child(5){animation-delay:.25s} .card:nth-child(6){animation-delay:.3s}
+.card:nth-child(7){animation-delay:.35s}
+@keyframes fadeUp { from{opacity:0;transform:translateY(18px)} to{opacity:1;transform:none} }
+
+.card-header { display:flex; align-items:center; gap:14px; margin-bottom:28px; padding-bottom:18px; border-bottom:1px solid var(--bg2); }
+.card-num { width:36px; height:36px; background:var(--accent); border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:0.85rem; font-weight:700; color:#fff; flex-shrink:0; }
+.card-title { font-family:'Fraunces',serif; font-size:1.15rem; font-weight:600; color:var(--text); }
+.card-subtitle { font-size:0.8rem; color:var(--text3); margin-top:2px; }
+
+/* GRID */
+.g2 { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+.g3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:18px; }
+.span2 { grid-column:1/-1; }
+@media(max-width:580px){ .g2,.g3{grid-template-columns:1fr} .span2{grid-column:auto} .card{padding:22px 18px} }
+
+/* FIELD */
+.field { display:flex; flex-direction:column; gap:6px; }
+.field > label { font-size:0.78rem; font-weight:600; color:var(--text2); letter-spacing:0.06em; text-transform:uppercase; }
+.field > label .req { color:var(--orange); margin-left:2px; }
+.field input[type=text],.field input[type=tel],.field input[type=email],.field select,.field textarea {
+  background:var(--surface2); border:1.5px solid var(--border); border-radius:10px;
+  padding:11px 14px; font-family:'Sora',sans-serif; font-size:0.9rem; color:var(--text);
+  outline:none; width:100%; transition:border-color 0.2s,box-shadow 0.2s,background 0.2s; -webkit-appearance:none;
+}
+.field input::placeholder,.field textarea::placeholder { color:var(--text3); }
+.field input:focus,.field select:focus,.field textarea:focus { border-color:var(--accent); background:#fff; box-shadow:0 0 0 3px var(--accent-bg); }
+.field input.err,.field select.err,.field textarea.err { border-color:var(--red); box-shadow:0 0 0 3px #fde8e6; }
+.field textarea { resize:vertical; min-height:84px; }
+.field select option { background:#fff; color:var(--text); }
+.field-hint { font-size:0.76rem; color:var(--text3); }
+
+/* CHIPS */
+.chips { display:flex; flex-wrap:wrap; gap:8px; padding-top:2px; }
+.chip { position:relative; }
+.chip input { position:absolute; opacity:0; width:0; height:0; }
+.chip label {
+  display:inline-flex; align-items:center; gap:6px;
+  background:var(--surface2); border:1.5px solid var(--border); border-radius:100px;
+  padding:8px 16px; font-size:0.85rem; font-weight:500; color:var(--text2);
+  cursor:pointer; transition:all 0.18s; user-select:none; white-space:nowrap;
+}
+.chip label:hover { border-color:var(--accent); color:var(--accent); background:var(--accent-bg); }
+.chip input:checked + label { background:var(--accent-bg); border-color:var(--accent); color:var(--accent); font-weight:600; }
+.chips-orange .chip input:checked + label { background:var(--orange-bg); border-color:var(--orange); color:var(--orange); }
+.chips-orange .chip label:hover { border-color:var(--orange); color:var(--orange); background:var(--orange-bg); }
+.chips-green .chip input:checked + label { background:var(--green-bg); border-color:var(--green); color:var(--green); }
+.chips-green .chip label:hover { border-color:var(--green); color:var(--green); background:var(--green-bg); }
+
+/* CONDITIONAL */
+.cond { display:none; margin-top:18px; padding:20px; background:var(--surface2); border:1px solid var(--accent-br); border-left:3px solid var(--accent); border-radius:0 10px 10px 0; }
+.cond.on { display:block; animation:slideIn 0.25s ease; }
+@keyframes slideIn { from{opacity:0;transform:translateY(-6px)} to{opacity:1;transform:none} }
+
+/* RANGE */
+.range-wrap { display:flex; flex-direction:column; gap:8px; }
+.range-val { font-family:'Fraunces',serif; font-size:1.6rem; font-weight:700; color:var(--accent); }
+input[type=range] { -webkit-appearance:none; width:100%; height:5px; background:var(--bg2); border-radius:100px; outline:none; border:none; box-shadow:none; padding:0; cursor:pointer; }
+input[type=range]::-webkit-slider-thumb { -webkit-appearance:none; width:20px; height:20px; background:var(--accent); border-radius:50%; cursor:pointer; box-shadow:0 2px 6px rgba(43,108,176,0.35); transition:transform 0.15s; }
+input[type=range]::-webkit-slider-thumb:hover { transform:scale(1.18); }
+.range-labels { display:flex; justify-content:space-between; font-size:0.73rem; color:var(--text3); }
+
+/* DIVIDER */
+.divider { height:1px; background:var(--bg2); margin:24px 0; }
+
+/* SUB LABEL */
+.sub-label { font-size:0.72rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--text3); margin-bottom:10px; margin-top:22px; }
+.sub-label:first-child { margin-top:0; }
+
+/* INFO BOX */
+.info-box { display:flex; align-items:flex-start; gap:10px; background:var(--accent-bg); border:1px solid var(--accent-br); border-radius:10px; padding:12px 16px; font-size:0.83rem; color:#1e40af; line-height:1.5; }
+
+/* PROJ GRID */
+.proj-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:14px; }
+.proj-item { background:var(--surface2); border:1.5px solid var(--border); border-radius:12px; padding:16px; display:flex; flex-direction:column; gap:10px; transition:border-color 0.2s; }
+.proj-item:focus-within { border-color:var(--accent); }
+.proj-item-title { display:flex; align-items:center; gap:8px; font-size:0.85rem; font-weight:600; color:var(--text); }
+.proj-item-title .ico { width:30px; height:30px; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:15px; }
+.ico-blue{background:var(--accent-bg)} .ico-orange{background:var(--orange-bg)} .ico-green{background:var(--green-bg)} .ico-gold{background:var(--gold-bg)}
+.proj-item select { background:#fff; border:1.5px solid var(--border); border-radius:8px; padding:7px 10px; font-family:'Sora',sans-serif; font-size:0.82rem; color:var(--text); outline:none; width:100%; -webkit-appearance:none; cursor:pointer; transition:border-color 0.2s; }
+.proj-item select:focus { border-color:var(--accent); box-shadow:0 0 0 3px var(--accent-bg); }
+
+/* SUBMIT */
+.submit-wrap { padding-top:32px; display:flex; flex-direction:column; align-items:center; gap:14px; }
+.btn-send { background:linear-gradient(135deg,#25d366,#1ea855); color:#fff; border:none; border-radius:14px; padding:17px 52px; font-family:'Sora',sans-serif; font-size:1rem; font-weight:700; cursor:pointer; letter-spacing:0.03em; display:flex; align-items:center; gap:10px; box-shadow:0 4px 20px rgba(37,211,102,0.35); transition:all 0.2s; }
+.btn-send:hover { transform:translateY(-2px); box-shadow:0 8px 28px rgba(37,211,102,0.45); }
+.send-note { font-size:0.8rem; color:var(--text3); text-align:center; max-width:360px; line-height:1.6; }
+
+/* SUCCESS */
+.success { display:none; flex-direction:column; align-items:center; text-align:center; gap:18px; padding:60px 20px; }
+.success.on { display:flex; animation:slideIn 0.4s ease; }
+.success-ico { width:72px; height:72px; background:var(--green-bg); border:2px solid var(--green-br); border-radius:50%; font-size:2rem; display:flex; align-items:center; justify-content:center; }
+.success h2 { font-family:'Fraunces',serif; font-size:2rem; color:var(--text); }
+.success p { color:var(--text2); font-size:0.95rem; max-width:400px; line-height:1.7; }
+.btn-reset { background:transparent; border:1.5px solid var(--accent); color:var(--accent); border-radius:10px; padding:11px 28px; font-family:'Sora',sans-serif; font-size:0.9rem; font-weight:600; cursor:pointer; transition:all 0.2s; margin-top:8px; }
+.btn-reset:hover { background:var(--accent-bg); }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-badge">🏗️ Jherlly M. Domingues Engenharia · Dourados–MS</div>
+  <h1>Briefing de <span>Início de Obra</span></h1>
+  <p>Preencha as informações abaixo para que possamos entender seu projeto e apresentar a melhor proposta técnica.</p>
+</div>
+
+<div class="progress-wrap">
+  <div class="progress-inner">
+    <div class="progress-bar"><div class="progress-fill" id="pFill"></div></div>
+    <div class="progress-pct" id="pLabel">0%</div>
+  </div>
+</div>
+
+<div class="page">
+<form id="form" novalidate>
+
+<!-- 1. DADOS DO CLIENTE -->
+<div class="card">
+  <div class="card-header">
+    <div class="card-num">1</div>
+    <div><div class="card-title">Dados do Cliente</div><div class="card-subtitle">Informações de contato e identificação</div></div>
+  </div>
+  <div class="g2">
+    <div class="field span2"><label>Nome completo <span class="req">*</span></label><input type="text" name="nome" placeholder="Seu nome completo" required></div>
+    <div class="field"><label>CPF / CNPJ</label><input type="text" name="cpf" placeholder="000.000.000-00"></div>
+    <div class="field"><label>WhatsApp <span class="req">*</span></label><input type="tel" name="whatsapp" placeholder="(67) 99999-9999" required></div>
+    <div class="field"><label>E-mail</label><input type="email" name="email" placeholder="seu@email.com"></div>
+    <div class="field"><label>Cidade / Bairro <span class="req">*</span></label><input type="text" name="cidade" placeholder="Ex: Dourados – Jd. América" required></div>
+    <div class="field"><label>Profissão / Ocupação</label><input type="text" name="profissao" placeholder="Ex: Comerciante, Servidor, Autônomo"></div>
+    <div class="field"><label>Como nos conheceu?</label>
+      <select name="origem"><option value="">Selecione...</option><option>Instagram</option><option>Indicação de amigo/familiar</option><option>Google</option><option>Facebook</option><option>TikTok</option><option>Placa / outdoor</option><option>Outro</option></select>
+    </div>
+  </div>
+</div>
+
+<!-- 2. TIPO E ESCOPO -->
+<div class="card">
+  <div class="card-header">
+    <div class="card-num">2</div>
+    <div><div class="card-title">Tipo e Escopo da Obra</div><div class="card-subtitle">O que você quer construir?</div></div>
+  </div>
+
+  <div class="field">
+    <label>Tipo de obra <span class="req">*</span></label>
+    <div class="chips chips-orange">
+      <div class="chip"><input type="radio" name="tipoObra" id="to1" value="Casa Térrea" required><label for="to1">🏠 Casa Térrea</label></div>
+      <div class="chip"><input type="radio" name="tipoObra" id="to2" value="Sobrado"><label for="to2">🏡 Sobrado</label></div>
+      <div class="chip"><input type="radio" name="tipoObra" id="to3" value="Galpão Industrial"><label for="to3">🏭 Galpão</label></div>
+      <div class="chip"><input type="radio" name="tipoObra" id="to4" value="Sala / Loja Comercial"><label for="to4">🏪 Comercial</label></div>
+      <div class="chip"><input type="radio" name="tipoObra" id="to5" value="Reforma/Ampliação"><label for="to5">🔧 Reforma/Ampliação</label></div>
+      <div class="chip"><input type="radio" name="tipoObra" id="to6" value="Outro"><label for="to6">📋 Outro</label></div>
+    </div>
+  </div>
+  <div class="cond" id="cond-outro">
+    <div class="field"><label>Descreva o tipo de obra</label><input type="text" name="tipoObraOutro" placeholder="Ex: Muro, piscina, calçamento, galpão rural..."></div>
+  </div>
+
+  <div class="divider"></div>
+  <div class="g2">
+    <div class="field">
+      <label>Área desejada (m²)</label>
+      <div class="range-wrap">
+        <div class="range-val" id="areaVal">80 m²</div>
+        <input type="range" name="area" id="areaR" min="30" max="600" step="5" value="80">
+        <div class="range-labels"><span>30 m²</span><span>600 m²</span></div>
+      </div>
+    </div>
+    <div class="field">
+      <label>Pavimentos</label>
+      <div class="chips">
+        <div class="chip"><input type="radio" name="pav" id="pv1" value="Térreo (1 piso)"><label for="pv1">1 piso</label></div>
+        <div class="chip"><input type="radio" name="pav" id="pv2" value="Sobrado (2 pisos)"><label for="pv2">2 pisos</label></div>
+        <div class="chip"><input type="radio" name="pav" id="pv3" value="3+ pisos"><label for="pv3">3+ pisos</label></div>
+      </div>
+    </div>
+    <div class="field">
+      <label>Quartos</label>
+      <div class="chips">
+        <div class="chip"><input type="radio" name="quartos" id="q1" value="1"><label for="q1">1</label></div>
+        <div class="chip"><input type="radio" name="quartos" id="q2" value="2"><label for="q2">2</label></div>
+        <div class="chip"><input type="radio" name="quartos" id="q3" value="3"><label for="q3">3</label></div>
+        <div class="chip"><input type="radio" name="quartos" id="q4" value="4"><label for="q4">4</label></div>
+        <div class="chip"><input type="radio" name="quartos" id="q5" value="5+"><label for="q5">5+</label></div>
+      </div>
+    </div>
+    <div class="field">
+      <label>Banheiros / Lavabos</label>
+      <div class="chips">
+        <div class="chip"><input type="radio" name="banheiros" id="ba1" value="1"><label for="ba1">1</label></div>
+        <div class="chip"><input type="radio" name="banheiros" id="ba2" value="2"><label for="ba2">2</label></div>
+        <div class="chip"><input type="radio" name="banheiros" id="ba3" value="3"><label for="ba3">3</label></div>
+        <div class="chip"><input type="radio" name="banheiros" id="ba4" value="4+"><label for="ba4">4+</label></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+  <p class="sub-label" style="margin-top:0;">🛋️ Área Social — marque todos que desejar</p>
+  <div class="chips chips-green">
+    <div class="chip"><input type="checkbox" name="amb_sala_estar" id="as1"><label for="as1">Sala de Estar</label></div>
+    <div class="chip"><input type="checkbox" name="amb_sala_jantar" id="as2"><label for="as2">Sala de Jantar</label></div>
+    <div class="chip"><input type="checkbox" name="amb_sala_tv" id="as3"><label for="as3">Sala de TV</label></div>
+    <div class="chip"><input type="checkbox" name="amb_varanda" id="as4"><label for="as4">Varanda / Alpendre</label></div>
+    <div class="chip"><input type="checkbox" name="amb_churrasqueira" id="as5"><label for="as5">Churrasqueira</label></div>
+    <div class="chip"><input type="checkbox" name="amb_piscina" id="as6"><label for="as6">Piscina</label></div>
+    <div class="chip"><input type="checkbox" name="amb_pergolado" id="as7"><label for="as7">Pergolado / Gazebo</label></div>
+    <div class="chip"><input type="checkbox" name="amb_lavabo" id="as8"><label for="as8">Lavabo</label></div>
+    <div class="chip"><input type="checkbox" name="amb_sacada" id="as9"><label for="as9">Sacada</label></div>
+    <div class="chip"><input type="checkbox" name="amb_salao_festas" id="as10"><label for="as10">Salão de Festas</label></div>
+  </div>
+
+  <p class="sub-label">🍳 Cozinha / Área de Serviço</p>
+  <div class="chips chips-orange">
+    <div class="chip"><input type="checkbox" name="amb_cozinha" id="ac1"><label for="ac1">Cozinha</label></div>
+    <div class="chip"><input type="checkbox" name="amb_cozinha_gourmet" id="ac2"><label for="ac2">Cozinha Gourmet</label></div>
+    <div class="chip"><input type="checkbox" name="amb_copa" id="ac3"><label for="ac3">Copa / Café</label></div>
+    <div class="chip"><input type="checkbox" name="amb_despensa" id="ac4"><label for="ac4">Despensa</label></div>
+    <div class="chip"><input type="checkbox" name="amb_area_servico" id="ac5"><label for="ac5">Área de Serviço</label></div>
+    <div class="chip"><input type="checkbox" name="amb_lavanderia" id="ac6"><label for="ac6">Lavanderia Interna</label></div>
+    <div class="chip"><input type="checkbox" name="amb_quarto_emp" id="ac7"><label for="ac7">Quarto de Empregada</label></div>
+  </div>
+
+  <p class="sub-label">🛏️ Área Íntima / Quartos</p>
+  <div class="chips">
+    <div class="chip"><input type="checkbox" name="amb_suite_master" id="aq1"><label for="aq1">Suíte Master</label></div>
+    <div class="chip"><input type="checkbox" name="amb_closet" id="aq2"><label for="aq2">Closet</label></div>
+    <div class="chip"><input type="checkbox" name="amb_escritorio" id="aq3"><label for="aq3">Escritório / Home Office</label></div>
+    <div class="chip"><input type="checkbox" name="amb_quarto_hospede" id="aq4"><label for="aq4">Quarto de Hóspedes</label></div>
+    <div class="chip"><input type="checkbox" name="amb_brinquedoteca" id="aq5"><label for="aq5">Brinquedoteca</label></div>
+    <div class="chip"><input type="checkbox" name="amb_academia" id="aq6"><label for="aq6">Academia / Fitness</label></div>
+    <div class="chip"><input type="checkbox" name="amb_hobby" id="aq7"><label for="aq7">Sala de Hobby</label></div>
+  </div>
+
+  <p class="sub-label">🚗 Garagem / Externo</p>
+  <div class="chips chips-orange">
+    <div class="chip"><input type="checkbox" name="amb_garagem1" id="ag1"><label for="ag1">Garagem 1 carro</label></div>
+    <div class="chip"><input type="checkbox" name="amb_garagem2" id="ag2"><label for="ag2">Garagem 2 carros</label></div>
+    <div class="chip"><input type="checkbox" name="amb_garagem3" id="ag3"><label for="ag3">Garagem 3+ carros</label></div>
+    <div class="chip"><input type="checkbox" name="amb_deposito" id="ag4"><label for="ag4">Depósito / Almoxarifado</label></div>
+    <div class="chip"><input type="checkbox" name="amb_jardim" id="ag5"><label for="ag5">Jardim</label></div>
+    <div class="chip"><input type="checkbox" name="amb_calcamento" id="ag6"><label for="ag6">Calçamento externo</label></div>
+    <div class="chip"><input type="checkbox" name="amb_muro" id="ag7"><label for="ag7">Muro / Alambrado</label></div>
+    <div class="chip"><input type="checkbox" name="amb_portao" id="ag8"><label for="ag8">Portão eletrônico</label></div>
+    <div class="chip"><input type="checkbox" name="amb_poco" id="ag9"><label for="ag9">Poço artesiano</label></div>
+    <div class="chip"><input type="checkbox" name="amb_fossa" id="ag10"><label for="ag10">Fossa / Sumidouro</label></div>
+  </div>
+
+  <div class="divider"></div>
+  <div class="field"><label>Observações sobre o projeto</label><textarea name="obsObra" placeholder="Conte mais sobre sua obra, algum detalhe especial..."></textarea></div>
+</div>
+
+<!-- 3. PROJETOS TÉCNICOS -->
+<div class="card">
+  <div class="card-header">
+    <div class="card-num">3</div>
+    <div><div class="card-title">Projetos Técnicos</div><div class="card-subtitle">Quais projetos você já possui?</div></div>
+  </div>
+  <div class="info-box" style="margin-bottom:22px;">ℹ️ Ter os projetos prontos agiliza o início e reduz custos. Informe abaixo o que você já tem.</div>
+  <div class="proj-grid">
+    <div class="proj-item">
+      <div class="proj-item-title"><div class="ico ico-blue">📐</div>Arquitetônico</div>
+      <select name="proj_arquitetonico"><option value="">Status...</option><option>✅ Pronto e aprovado</option><option>📝 Pronto, falta aprovação</option><option>💡 Só tenho croqui/ideia</option><option>❌ Não tenho</option></select>
+    </div>
+    <div class="proj-item">
+      <div class="proj-item-title"><div class="ico ico-orange">💧</div>Hidráulico</div>
+      <select name="proj_hidraulico"><option value="">Status...</option><option>✅ Tenho pronto</option><option>⏳ Em elaboração</option><option>❌ Não tenho</option><option>🔄 Preciso contratar</option></select>
+    </div>
+    <div class="proj-item">
+      <div class="proj-item-title"><div class="ico ico-gold">⚡</div>Elétrico</div>
+      <select name="proj_eletrico"><option value="">Status...</option><option>✅ Tenho pronto</option><option>⏳ Em elaboração</option><option>❌ Não tenho</option><option>🔄 Preciso contratar</option></select>
+    </div>
+    <div class="proj-item">
+      <div class="proj-item-title"><div class="ico ico-blue">🏗️</div>Estrutural</div>
+      <select name="proj_estrutural"><option value="">Status...</option><option>✅ Tenho pronto</option><option>⏳ Em elaboração</option><option>❌ Não tenho</option><option>🔄 Preciso contratar</option></select>
+    </div>
+    <div class="proj-item">
+      <div class="proj-item-title"><div class="ico ico-green">🌧️</div>Sanitário/Drenagem</div>
+      <select name="proj_sanitario"><option value="">Status...</option><option>✅ Tenho pronto</option><option>⏳ Em elaboração</option><option>❌ Não tenho</option><option>🔄 Preciso contratar</option></select>
+    </div>
+    <div class="proj-item">
+      <div class="proj-item-title"><div class="ico ico-gold">🛡️</div>SPDA / Aterramento</div>
+      <select name="proj_spda"><option value="">Status...</option><option>✅ Tenho pronto</option><option>⏳ Em elaboração</option><option>❌ Não necessário</option><option>🔄 Preciso contratar</option></select>
+    </div>
+  </div>
+  <div class="divider"></div>
+  <div class="g2">
+    <div class="field">
+      <label>Alvará de construção</label>
+      <div class="chips">
+        <div class="chip"><input type="radio" name="alvara" id="al1" value="Sim, já tenho"><label for="al1">✅ Tenho</label></div>
+        <div class="chip"><input type="radio" name="alvara" id="al2" value="Em processo"><label for="al2">⏳ Em processo</label></div>
+        <div class="chip"><input type="radio" name="alvara" id="al3" value="Não tenho"><label for="al3">❌ Não tenho</label></div>
+      </div>
+    </div>
+    <div class="field">
+      <label>ART / RRT assinada</label>
+      <div class="chips">
+        <div class="chip"><input type="radio" name="art" id="ar1" value="Sim"><label for="ar1">✅ Sim</label></div>
+        <div class="chip"><input type="radio" name="art" id="ar2" value="Não"><label for="ar2">❌ Não</label></div>
+        <div class="chip"><input type="radio" name="art" id="ar3" value="Não sei"><label for="ar3">🤔 Não sei</label></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 4. TERRENO -->
+<div class="card">
+  <div class="card-header">
+    <div class="card-num">4</div>
+    <div><div class="card-title">Situação do Terreno</div><div class="card-subtitle">Informe a situação atual do lote</div></div>
+  </div>
+  <div class="field">
+    <label>Situação do terreno <span class="req">*</span></label>
+    <div class="chips chips-orange">
+      <div class="chip"><input type="radio" name="temTerreno" id="tt1" value="Sim, já tenho o terreno" required><label for="tt1">✅ Já tenho</label></div>
+      <div class="chip"><input type="radio" name="temTerreno" id="tt2" value="Ainda vou adquirir"><label for="tt2">🔍 Vou adquirir</label></div>
+      <div class="chip"><input type="radio" name="temTerreno" id="tt3" value="Estou financiando o terreno"><label for="tt3">📑 Financiando</label></div>
+    </div>
+  </div>
+  <div class="cond" id="cond-terreno">
+    <div class="g2">
+      <div class="field"><label>Endereço / Localização</label><input type="text" name="terrenoEndereco" placeholder="Rua, bairro, cidade"></div>
+      <div class="field"><label>Dimensões (m)</label><input type="text" name="terrenoDim" placeholder="Ex: 10 x 25 m"></div>
+      <div class="field"><label>Área total (m²)</label><input type="text" name="terrenoArea" placeholder="Ex: 250 m²"></div>
+      <div class="field">
+        <label>Regularizado?</label>
+        <div class="chips">
+          <div class="chip"><input type="radio" name="terrenoReg" id="tr1" value="Sim"><label for="tr1">Sim</label></div>
+          <div class="chip"><input type="radio" name="terrenoReg" id="tr2" value="Não"><label for="tr2">Não</label></div>
+          <div class="chip"><input type="radio" name="terrenoReg" id="tr3" value="Não sei"><label for="tr3">Não sei</label></div>
+        </div>
+      </div>
+      <div class="field">
+        <label>Topografia</label>
+        <div class="chips">
+          <div class="chip"><input type="radio" name="terrTopo" id="tp1" value="Plano"><label for="tp1">Plano</label></div>
+          <div class="chip"><input type="radio" name="terrTopo" id="tp2" value="Aclive"><label for="tp2">Aclive</label></div>
+          <div class="chip"><input type="radio" name="terrTopo" id="tp3" value="Declive"><label for="tp3">Declive</label></div>
+        </div>
+      </div>
+      <div class="field">
+        <label>Rede de água e esgoto?</label>
+        <div class="chips">
+          <div class="chip"><input type="radio" name="redeTerr" id="rt1" value="Sim, os dois"><label for="rt1">Os dois</label></div>
+          <div class="chip"><input type="radio" name="redeTerr" id="rt2" value="Só água"><label for="rt2">Só água</label></div>
+          <div class="chip"><input type="radio" name="redeTerr" id="rt3" value="Nenhum"><label for="rt3">Nenhum</label></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 5. FINANCEIRO -->
+<div class="card">
+  <div class="card-header">
+    <div class="card-num">5</div>
+    <div><div class="card-title">Situação Financeira</div><div class="card-subtitle">Para indicarmos a melhor linha de crédito</div></div>
+  </div>
+  <div class="field">
+    <label>Como pretende pagar a obra? <span class="req">*</span></label>
+    <div class="chips chips-green">
+      <div class="chip"><input type="checkbox" name="fin_proprios" id="fi1"><label for="fi1">💰 Próprios</label></div>
+      <div class="chip"><input type="checkbox" name="fin_mcmv" id="fi2"><label for="fi2">🏦 MCMV</label></div>
+      <div class="chip"><input type="checkbox" name="fin_fgts" id="fi3"><label for="fi3">🏛️ Financiamento / FGTS</label></div>
+      <div class="chip"><input type="checkbox" name="fin_misto" id="fi4"><label for="fi4">🔀 Misto</label></div>
+      <div class="chip"><input type="checkbox" name="fin_decidindo" id="fi5"><label for="fi5">🤔 Ainda decidindo</label></div>
+    </div>
+  </div>
+  <div class="divider"></div>
+  <div class="g2">
+    <div class="field">
+      <label>Renda familiar mensal bruta <span class="req">*</span></label>
+      <select name="renda" required>
+        <option value="">Selecione a faixa...</option>
+        <option>Até R$ 2.000</option><option>De R$ 2.001 a R$ 4.000</option>
+        <option>De R$ 4.001 a R$ 8.000</option><option>De R$ 8.001 a R$ 12.000</option>
+        <option>Acima de R$ 12.000</option><option>Prefiro não informar</option>
+      </select>
+      <span class="field-hint">🔒 Sigilo total — usado apenas para indicar crédito</span>
+    </div>
+    <div class="field">
+      <label>Possui FGTS disponível?</label>
+      <div class="chips">
+        <div class="chip"><input type="radio" name="fgts" id="fg1" value="Sim"><label for="fg1">Sim</label></div>
+        <div class="chip"><input type="radio" name="fgts" id="fg2" value="Não"><label for="fg2">Não</label></div>
+        <div class="chip"><input type="radio" name="fgts" id="fg3" value="Não sei"><label for="fg3">Não sei</label></div>
+      </div>
+    </div>
+  </div>
+  <div class="divider"></div>
+  <div class="field">
+    <label>Já realizou simulação de crédito?</label>
+    <div class="chips">
+      <div class="chip"><input type="radio" name="temSimulacao" id="si1" value="Sim"><label for="si1">✅ Sim</label></div>
+      <div class="chip"><input type="radio" name="temSimulacao" id="si2" value="Não"><label for="si2">❌ Não</label></div>
+      <div class="chip"><input type="radio" name="temSimulacao" id="si3" value="Em andamento"><label for="si3">⏳ Em andamento</label></div>
+    </div>
+  </div>
+  <div class="cond" id="cond-sim">
+    <div class="g2">
+      <div class="field"><label>Banco / Instituição</label><input type="text" name="simBanco" placeholder="Ex: Caixa, Bradesco, Sicoob..."></div>
+      <div class="field"><label>Valor aprovado / simulado</label><input type="text" name="simValor" id="simValor" placeholder="R$ 0,00"></div>
+      <div class="field"><label>Valor da entrada</label><input type="text" name="simEntrada" id="simEntrada" placeholder="R$ 0,00"></div>
+      <div class="field"><label>Parcela mensal estimada</label><input type="text" name="simParcela" id="simParcela" placeholder="R$ 0,00"></div>
+    </div>
+    <div class="field" style="margin-top:14px;"><label>Observações</label><textarea name="simObs" placeholder="Ex: Aprovado pelo FGTS, aguardando documentação..." style="min-height:70px;"></textarea></div>
+  </div>
+  <div class="divider"></div>
+  <div class="field">
+    <label>Orçamento total disponível para a obra</label>
+    <div class="range-wrap">
+      <div class="range-val" id="orcVal">R$ 100.000</div>
+      <input type="range" name="orcamento" id="orcR" min="50000" max="1000000" step="5000" value="100000">
+      <div class="range-labels"><span>R$ 50k</span><span>R$ 1M+</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- 6. EXPECTATIVAS -->
+<div class="card">
+  <div class="card-header">
+    <div class="card-num">6</div>
+    <div><div class="card-title">Expectativas e Referências</div><div class="card-subtitle">Como você imagina a sua obra?</div></div>
+  </div>
+  <div class="g2">
+    <div class="field">
+      <label>Padrão de acabamento</label>
+      <div class="chips">
+        <div class="chip"><input type="radio" name="padrao" id="pa1" value="Simples / Econômico"><label for="pa1">🔧 Simples</label></div>
+        <div class="chip"><input type="radio" name="padrao" id="pa2" value="Médio padrão"><label for="pa2">⭐ Médio</label></div>
+        <div class="chip"><input type="radio" name="padrao" id="pa3" value="Alto padrão"><label for="pa3">✨ Alto padrão</label></div>
+      </div>
+    </div>
+    <div class="field">
+      <label>Prazo desejado para início</label>
+      <div class="chips">
+        <div class="chip"><input type="checkbox" name="prazo_rapido" id="pr1"><label for="pr1">🚀 O mais rápido possível</label></div>
+        <div class="chip"><input type="checkbox" name="prazo_3meses" id="pr2"><label for="pr2">Até 3 meses</label></div>
+        <div class="chip"><input type="checkbox" name="prazo_6meses" id="pr3"><label for="pr3">3–6 meses</label></div>
+        <div class="chip"><input type="checkbox" name="prazo_planejando" id="pr4"><label for="pr4">📋 Ainda planejando</label></div>
+      </div>
+    </div>
+    <div class="field span2">
+      <label>Estilo arquitetônico desejado</label>
+      <div class="chips">
+        <div class="chip"><input type="radio" name="estilo" id="es1" value="Moderno / Minimalista"><label for="es1">🏢 Moderno</label></div>
+        <div class="chip"><input type="radio" name="estilo" id="es2" value="Contemporâneo"><label for="es2">🏛️ Contemporâneo</label></div>
+        <div class="chip"><input type="radio" name="estilo" id="es3" value="Rústico / Colonial"><label for="es3">🏚️ Rústico</label></div>
+        <div class="chip"><input type="radio" name="estilo" id="es4" value="Industrial"><label for="es4">🔩 Industrial</label></div>
+        <div class="chip"><input type="radio" name="estilo" id="es5" value="Sem preferência"><label for="es5">🤷 Sem preferência</label></div>
+      </div>
+    </div>
+  </div>
+  <div class="divider"></div>
+  <div class="field"><label>Referências / Inspirações</label><textarea name="referencias" placeholder="Cole links do Pinterest, Instagram ou descreva o que você gosta..."></textarea></div>
+</div>
+
+<!-- 7. COMPLEMENTAR -->
+<div class="card">
+  <div class="card-header">
+    <div class="card-num">7</div>
+    <div><div class="card-title">Informações Complementares</div><div class="card-subtitle">Para entendermos melhor o seu perfil</div></div>
+  </div>
+  <div class="field">
+    <label>Maior receio em relação à obra</label>
+    <div class="chips">
+      <div class="chip"><input type="checkbox" name="receio_prazo" id="rc1"><label for="rc1">⏰ Prazo</label></div>
+      <div class="chip"><input type="checkbox" name="receio_custo" id="rc2"><label for="rc2">💸 Custo estourar</label></div>
+      <div class="chip"><input type="checkbox" name="receio_qualidade" id="rc3"><label for="rc3">🔍 Qualidade</label></div>
+      <div class="chip"><input type="checkbox" name="receio_burocracia" id="rc4"><label for="rc4">📄 Burocracia</label></div>
+      <div class="chip"><input type="checkbox" name="receio_confianca" id="rc5"><label for="rc5">🤝 Confiança</label></div>
+      <div class="chip"><input type="checkbox" name="receio_material" id="rc6"><label for="rc6">🧱 Falta de material</label></div>
+    </div>
+  </div>
+  <div class="divider"></div>
+  <div class="g2">
+    <div class="field">
+      <label>Preferência de atendimento</label>
+      <div class="chips">
+        <div class="chip"><input type="radio" name="atendimento" id="at1" value="WhatsApp"><label for="at1">💬 WhatsApp</label></div>
+        <div class="chip"><input type="radio" name="atendimento" id="at2" value="Ligação"><label for="at2">📞 Ligação</label></div>
+        <div class="chip"><input type="radio" name="atendimento" id="at3" value="Visita presencial"><label for="at3">🤝 Presencial</label></div>
+        <div class="chip"><input type="radio" name="atendimento" id="at4" value="Videochamada"><label for="at4">📹 Vídeo</label></div>
+      </div>
+    </div>
+    <div class="field">
+      <label>Melhor horário para contato</label>
+      <div class="chips">
+        <div class="chip"><input type="radio" name="horario" id="hr1" value="Manhã (8h–12h)"><label for="hr1">🌅 Manhã</label></div>
+        <div class="chip"><input type="radio" name="horario" id="hr2" value="Tarde (13h–18h)"><label for="hr2">☀️ Tarde</label></div>
+        <div class="chip"><input type="radio" name="horario" id="hr3" value="Noite (18h–21h)"><label for="hr3">🌙 Noite</label></div>
+      </div>
+    </div>
+  </div>
+  <div class="divider"></div>
+  <div class="field"><label>Mensagem adicional / Dúvidas</label><textarea name="mensagem" placeholder="Quanto mais detalhes, melhor! Pode escrever à vontade." style="min-height:100px;"></textarea></div>
+</div>
+
+<!-- SUBMIT -->
+<div class="submit-wrap">
+  <button type="submit" class="btn-send">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.126.558 4.121 1.533 5.849L0 24l6.335-1.513A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.8 9.8 0 01-5.003-1.366l-.36-.213-3.757.897.943-3.648-.235-.374A9.772 9.772 0 012.182 12C2.182 6.573 6.573 2.182 12 2.182S21.818 6.573 21.818 12 17.427 21.818 12 21.818z"/></svg>
+    Enviar Briefing pelo WhatsApp
+  </button>
+  <p class="send-note">🔒 Seus dados são confidenciais e usados apenas para elaboração da proposta técnica.</p>
+</div>
+
+</form>
+
+<!-- SUCCESS -->
+<div class="success" id="successScreen">
+  <div class="success-ico">✅</div>
+  <h2>Briefing Enviado!</h2>
+  <p>Obrigado, <strong id="nomeConfirm"></strong>! Suas informações foram enviadas. Em breve nossa equipe entrará em contato.</p>
+  <button class="btn-reset" onclick="resetar()">Enviar novo briefing</button>
+</div>
+
+</div>
+
+<script>
+// PROGRESS
+function progress(){
+  const inputs = document.querySelectorAll('input[type=text],input[type=tel],input[type=email],select,textarea');
+  const radioGrps = ['tipoObra','temTerreno','renda','padrao','atendimento'];
+  let filled=0,total=0;
+  inputs.forEach(el=>{
+    if(el.closest('.cond')&&!el.closest('.cond').classList.contains('on')) return;
+    total++; if(el.value.trim()) filled++;
+  });
+  radioGrps.forEach(n=>{ total++; if(document.querySelector(`input[name="${n}"]:checked`)) filled++; });
+  const pct=total?Math.round(filled/total*100):0;
+  document.getElementById('pFill').style.width=pct+'%';
+  document.getElementById('pLabel').textContent=pct+'%';
+}
+document.getElementById('form').addEventListener('input',progress);
+
+// RANGES
+document.getElementById('areaR').addEventListener('input',function(){ document.getElementById('areaVal').textContent=this.value+' m²'; });
+document.getElementById('orcR').addEventListener('input',function(){
+  const v=parseInt(this.value);
+  document.getElementById('orcVal').textContent=v>=1000000?'R$ 1.000.000+':'R$ '+v.toLocaleString('pt-BR');
+});
+
+// CURRENCY
+['simValor','simEntrada','simParcela'].forEach(id=>{
+  const el=document.getElementById(id); if(!el) return;
+  el.addEventListener('input',function(){
+    let v=this.value.replace(/\D/g,''); if(!v){this.value='';return;}
+    this.value=(parseInt(v)/100).toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
+  });
+});
+
+// PHONE
+const telEl=document.querySelector('input[name=whatsapp]');
+if(telEl) telEl.addEventListener('input',function(){
+  let v=this.value.replace(/\D/g,'').slice(0,11);
+  if(v.length<=2) v='('+v;
+  else if(v.length<=7) v='('+v.slice(0,2)+') '+v.slice(2);
+  else v='('+v.slice(0,2)+') '+v.slice(2,7)+'-'+v.slice(7);
+  this.value=v;
+});
+
+// CONDITIONALS
+function cond(id,show){ document.getElementById(id)?.classList.toggle('on',show); }
+document.querySelectorAll('input[name=tipoObra]').forEach(r=>r.addEventListener('change',()=>{ cond('cond-outro',r.value==='Outro'&&r.checked); progress(); }));
+document.querySelectorAll('input[name=temTerreno]').forEach(r=>r.addEventListener('change',()=>{ cond('cond-terreno',r.value==='Sim, já tenho o terreno'&&r.checked); progress(); }));
+document.querySelectorAll('input[name=temSimulacao]').forEach(r=>r.addEventListener('change',()=>{ cond('cond-sim',r.value==='Sim'&&r.checked); progress(); }));
+
+// COLLECT CHECKBOXES
+function chk(keys){ return keys.filter(k=>document.querySelector(`input[name="${k}"]`)?.checked).map(k=>{ const label=document.querySelector(`label[for="${document.querySelector(`input[name="${k}"]`).id}"]`); return label?label.textContent.trim():k; }); }
+
+// SUBMIT
+document.getElementById('form').addEventListener('submit', async function(e){
+  e.preventDefault();
+  const req=this.querySelectorAll('[required]'); let ok=true;
+  req.forEach(el=>{
+    if(el.type==='radio'){
+      const grp=[...this.querySelectorAll(`input[name="${el.name}"]`)];
+      if(!grp.some(r=>r.checked)){ ok=false; const chips=grp[0].closest('.chips'); chips.style.outline='2px solid var(--red)'; chips.style.borderRadius='8px'; }
+    } else { if(!el.value.trim()){el.classList.add('err');ok=false;}else el.classList.remove('err'); }
+  });
+  if(!ok){ this.querySelector('.err,.chips[style]')?.scrollIntoView({behavior:'smooth',block:'center'}); return; }
+
+  const d=Object.fromEntries(new FormData(this));
+  const area=document.getElementById('areaR').value;
+  const orc=parseInt(document.getElementById('orcR').value);
+  const orcStr=orc>=1000000?'R$ 1.000.000+':'R$ '+orc.toLocaleString('pt-BR');
+
+  const ambSocial=chk(['amb_sala_estar','amb_sala_jantar','amb_sala_tv','amb_varanda','amb_churrasqueira','amb_piscina','amb_pergolado','amb_lavabo','amb_sacada','amb_salao_festas']);
+  const ambServ=chk(['amb_cozinha','amb_cozinha_gourmet','amb_copa','amb_despensa','amb_area_servico','amb_lavanderia','amb_quarto_emp']);
+  const ambInt=chk(['amb_suite_master','amb_closet','amb_escritorio','amb_quarto_hospede','amb_brinquedoteca','amb_academia','amb_hobby']);
+  const ambExt=chk(['amb_garagem1','amb_garagem2','amb_garagem3','amb_deposito','amb_jardim','amb_calcamento','amb_muro','amb_portao','amb_poco','amb_fossa']);
+  const prazos=chk(['prazo_rapido','prazo_3meses','prazo_6meses','prazo_planejando']);
+
+  let m='';
+  m+=`🏗️ *BRIEFING DE OBRA — JD Engenharia*\n📅 ${new Date().toLocaleDateString('pt-BR')}\n${'━'.repeat(26)}\n\n`;
+  m+=`👤 *CLIENTE*\n• Nome: ${d.nome||'-'}\n`;
+  if(d.cpf) m+=`• CPF/CNPJ: ${d.cpf}\n`;
+  m+=`• WhatsApp: ${d.whatsapp||'-'}\n`;
+  if(d.email) m+=`• E-mail: ${d.email}\n`;
+  m+=`• Cidade/Bairro: ${d.cidade||'-'}\n`;
+  if(d.profissao) m+=`• Profissão: ${d.profissao}\n`;
+  if(d.origem) m+=`• Como conheceu: ${d.origem}\n`;
+  m+=`\n🏠 *OBRA*\n• Tipo: ${d.tipoObra||'-'}${d.tipoObraOutro?' – '+d.tipoObraOutro:''}\n• Área: ${area} m²\n`;
+  if(d.pav) m+=`• Pavimentos: ${d.pav}\n`;
+  if(d.quartos) m+=`• Quartos: ${d.quartos}\n`;
+  if(d.banheiros) m+=`• Banheiros: ${d.banheiros}\n`;
+  if(ambSocial.length) m+=`• Área social: ${ambSocial.join(', ')}\n`;
+  if(ambServ.length) m+=`• Serviço/Cozinha: ${ambServ.join(', ')}\n`;
+  if(ambInt.length) m+=`• Área íntima: ${ambInt.join(', ')}\n`;
+  if(ambExt.length) m+=`• Garagem/Externo: ${ambExt.join(', ')}\n`;
+  if(d.estilo) m+=`• Estilo: ${d.estilo}\n`;
+  if(d.padrao) m+=`• Padrão: ${d.padrao}\n`;
+  if(d.obsObra) m+=`• Obs: ${d.obsObra}\n`;
+  m+=`\n📐 *PROJETOS TÉCNICOS*\n`;
+  if(d.proj_arquitetonico) m+=`• Arquitetônico: ${d.proj_arquitetonico}\n`;
+  if(d.proj_hidraulico) m+=`• Hidráulico: ${d.proj_hidraulico}\n`;
+  if(d.proj_eletrico) m+=`• Elétrico: ${d.proj_eletrico}\n`;
+  if(d.proj_estrutural) m+=`• Estrutural: ${d.proj_estrutural}\n`;
+  if(d.proj_sanitario) m+=`• Sanitário: ${d.proj_sanitario}\n`;
+  if(d.proj_spda) m+=`• SPDA/Aterramento: ${d.proj_spda}\n`;
+  if(d.alvara) m+=`• Alvará: ${d.alvara}\n`;
+  if(d.art) m+=`• ART/RRT: ${d.art}\n`;
+  m+=`\n📍 *TERRENO*\n• Situação: ${d.temTerreno||'-'}\n`;
+  if(d.terrenoEndereco) m+=`• Endereço: ${d.terrenoEndereco}\n`;
+  if(d.terrenoDim) m+=`• Dimensões: ${d.terrenoDim}\n`;
+  if(d.terrenoArea) m+=`• Área: ${d.terrenoArea}\n`;
+  if(d.terrenoReg) m+=`• Regularizado: ${d.terrenoReg}\n`;
+  if(d.terrTopo) m+=`• Topografia: ${d.terrTopo}\n`;
+  if(d.redeTerr) m+=`• Água/Esgoto: ${d.redeTerr}\n`;
+  const fins=chk(['fin_proprios','fin_mcmv','fin_fgts','fin_misto','fin_decidindo']);
+  m+=`\n💰 *FINANCEIRO*\n• Forma: ${fins.length?fins.join(', '):'-'}\n• Renda: ${d.renda||'-'}\n`;
+  if(d.fgts) m+=`• FGTS: ${d.fgts}\n`;
+  m+=`• Orçamento total: ${orcStr}\n• Simulação: ${d.temSimulacao||'-'}\n`;
+  if(d.simBanco) m+=`• Banco: ${d.simBanco}\n`;
+  if(d.simValor) m+=`• Valor aprovado: ${d.simValor}\n`;
+  if(d.simEntrada) m+=`• Entrada: ${d.simEntrada}\n`;
+  if(d.simParcela) m+=`• Parcela: ${d.simParcela}\n`;
+  if(d.simObs) m+=`• Obs: ${d.simObs}\n`;
+  m+=`\n📋 *COMPLEMENTAR*\n`;
+  const receios=chk(['receio_prazo','receio_custo','receio_qualidade','receio_burocracia','receio_confianca','receio_material']);
+  if(prazos.length) m+=`• Prazo início: ${prazos.join(', ')}\n`;
+  if(receios.length) m+=`• Receios: ${receios.join(', ')}\n`;
+  if(d.atendimento) m+=`• Atendimento: ${d.atendimento}\n`;
+  if(d.horario) m+=`• Horário: ${d.horario}\n`;
+  if(d.referencias) m+=`• Referências: ${d.referencias}\n`;
+  if(d.mensagem) m+=`• Mensagem: ${d.mensagem}\n`;
+
+  // ── Mostrar loading ──────────────────────────────────────
+  const btn = document.querySelector('.btn-send');
+  btn.disabled = true;
+  btn.innerHTML = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> Gerando PDF e enviando...`;
+
+  // ── Coletar todos os dados (incluindo checkboxes) ────────
+  const allData = Object.fromEntries(new FormData(document.getElementById('form')));
+  // adicionar checkboxes não capturados pelo FormData quando desmarcados
+  document.querySelectorAll('input[type=checkbox]').forEach(cb => {
+    if(cb.checked) allData[cb.name] = 'on';
+  });
+  allData.area = document.getElementById('areaR').value;
+  allData.orcamento = document.getElementById('orcR').value;
+
+  // ── Abrir WhatsApp (simultâneo) ──────────────────────────
+  window.open(`https://wa.me/5567992349200?text=${encodeURIComponent(m)}`,'_blank');
+
+  // ── Chamar Netlify Function ──────────────────────────────
+  try {
+    const resp = await fetch('/.netlify/functions/briefing', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(allData),
+    });
+    const result = await resp.json();
+    if (!result.ok) throw new Error(result.error || 'Erro desconhecido');
+  } catch(err) {
+    console.warn('Erro ao enviar e-mail:', err.message);
+    // não bloqueia o fluxo — WhatsApp já foi aberto
+  }
+
+  // ── Mostrar tela de sucesso ──────────────────────────────
+  document.getElementById('nomeConfirm').textContent=(d.nome||'cliente').split(' ')[0];
+  document.getElementById('form').style.display='none';
+  document.querySelector('.progress-wrap').style.display='none';
+  document.getElementById('successScreen').classList.add('on');
+  window.scrollTo({top:0,behavior:'smooth'});
+});
+
+function resetar(){
+  document.getElementById('form').reset();
+  document.getElementById('form').style.display='';
+  document.querySelector('.progress-wrap').style.display='';
+  document.getElementById('successScreen').classList.remove('on');
+  document.getElementById('pFill').style.width='0%';
+  document.getElementById('pLabel').textContent='0%';
+  document.getElementById('areaVal').textContent='80 m²';
+  document.getElementById('orcVal').textContent='R$ 100.000';
+  document.querySelectorAll('.cond').forEach(c=>c.classList.remove('on'));
+  document.querySelectorAll('.chips[style]').forEach(c=>c.removeAttribute('style'));
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+</body>
+</html>

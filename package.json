@@ -1,0 +1,9 @@
+{
+  "name": "briefing-obra-jd",
+  "version": "1.0.0",
+  "description": "Briefing de Obra - JD Engenharia",
+  "dependencies": {
+    "pdfkit": "^0.15.0",
+    "resend": "^3.2.0"
+  }
+}
